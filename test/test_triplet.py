@@ -6,7 +6,7 @@ class TestTriplet(unittest.TestCase):
     def test_triplet_exist(self):
         self.assertEqual(triplet([1, 3, 5, 7, 8, 1, 23], 20), True)
 
-    def test_triplets_not_exist(self):
+    def test_triplet_not_exist(self):
         self.assertEqual(triplet([1, 3, 5, 7, 8, 1, 23], 40), False)
 
 

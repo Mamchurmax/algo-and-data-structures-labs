@@ -1,11 +1,15 @@
 def triplet(arr, p):
-    for i in range(0, len(arr) - 1):
+    arr = sorted(arr)
+    for i in range(len(arr) - 2):
         temp = p - arr[i]
-        for j in range(i + 1, len(arr)):
-            if (temp - arr[j]) in arr[j+1:]:
+        left = i + 1
+        right = len(arr) - 1
+        while left < right:
+            sum_of2 = arr[left] + arr[right]
+            if sum_of2 == temp:
                 return True
+            elif sum_of2 < temp:
+                left += 1
+            else:
+                right -= 1
     return False
-
-
-arr1 = [1, 1, 1, 10, 10, 10]
-print(triplet(arr1, 3))

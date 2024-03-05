@@ -1,5 +1,5 @@
 import unittest
-from src.main import pumpkin
+from src.pumpkin import pumpkin
 
 
 class TestPumpkin(unittest.TestCase):

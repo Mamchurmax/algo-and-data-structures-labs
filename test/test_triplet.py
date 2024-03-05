@@ -1,5 +1,5 @@
 import unittest
-from src.main2 import triplet
+from src.triplet import triplet
 
 
 class TestTriplet(unittest.TestCase):

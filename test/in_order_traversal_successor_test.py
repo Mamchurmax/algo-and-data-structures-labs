@@ -8,14 +8,14 @@ class TestFindSuccessor(unittest.TestCase):
         root.left = BinaryTree(5)
         root.left.left = BinaryTree(3)
         root.left.right = BinaryTree(7)
-        root.right = BinaryTree(15)
+        root.right = BinaryTree(12)
         root.right.right = BinaryTree(20)
-        root.right.right.left = BinaryTree(12)
+        root.right.right.left = BinaryTree(15)
 
-        node_5 = root.left
+        node_5 = root.right
         successor = find_successor(root, node_5)
         if successor:
-            self.assertEqual(successor.value, 7)
+            self.assertEqual(successor.value, 15)
         else:
             self.fail("Successor is None")
 
@@ -30,7 +30,7 @@ class TestFindSuccessor(unittest.TestCase):
 
         node_20 = root.right.right
         successor = find_successor(root, node_20)
-        self.assertIsNone(successor)
+        self.assertEqual(successor, None)
 
 
 if __name__ == "__main__":

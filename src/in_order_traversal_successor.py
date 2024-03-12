@@ -12,10 +12,12 @@ def find_left_leaf(node):
     return node
 
 
-def find_successor(root: BinaryTree, node: BinaryTree) -> BinaryTree:
+def find_successor(root: BinaryTree, node: BinaryTree):
     if node.right:
         return find_left_leaf(node.right)
-    else:
+    elif node.right is None:
         while node.parent and node.parent.right == node:
             node = node.parent
         return node.parent
+    else:
+        return None

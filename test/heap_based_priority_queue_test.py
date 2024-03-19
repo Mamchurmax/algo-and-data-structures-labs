@@ -28,3 +28,9 @@ class TestPriorityQueue(unittest.TestCase):
         queue.delete_root()
         queue.delete_root()
         self.assertEqual(queue.show(), ['eight', 'fourth', 'third', 'first'])
+
+    def test_empty_queue(self):
+        queue = PriorityQueue()
+        queue.insert('first', 1)
+        queue.delete_root()
+        self.assertEqual(queue.show(), None)

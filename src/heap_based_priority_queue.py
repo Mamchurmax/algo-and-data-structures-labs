@@ -11,17 +11,12 @@ class PriorityQueue:
     def swap(self, index1, index2):
         self.heap[index1], self.heap[index2] = self.heap[index2], self.heap[index1]
 
-    def is_empty(self):
-        return len(self.heap) == 0
-
     def insert(self, value, priority):
         new_node = Node(value, priority)
         self.heap.append(new_node)
         self._go_up(len(self.heap) - 1)
 
     def delete_root(self):
-        if self.is_empty():
-            raise Exception("Черга пуста")
         max_priority_node = self.heap[0]
         self.heap[0] = self.heap[-1]
         self.heap.pop()
@@ -30,6 +25,8 @@ class PriorityQueue:
         return max_priority_node.value
 
     def show(self):
+        if not self.heap:
+            return None
         return [node.value for node in self.heap]
 
     def _go_up(self, index):
@@ -44,7 +41,7 @@ class PriorityQueue:
             left_child_index = 2 * index + 1
             if left_child_index >= len(self.heap):
                 break
-            right_child_index = left_child_index + 1
+            right_child_index = 2 * index + 2
             largest = left_child_index
             if (right_child_index < len(self.heap) and self.heap[right_child_index].priority
                     > self.heap[left_child_index].priority):

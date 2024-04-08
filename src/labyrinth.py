@@ -18,31 +18,22 @@ def labyrinth(start_point, goal, size, lab):
     return None
 
 
-def read_input(input_file):
+def read_input(input_file, output_file):
     with open(input_file, 'r') as f:
-        start = tuple(map(int, f.readline().strip().split(', ')))
-        goal = tuple(map(int, f.readline().strip().split(', ')))
-        size = tuple(map(int, f.readline().strip().split(', ')))
-        lab = []
-        for _ in range(size[0]):
-            row_str = f.readline().strip()
-            row = [int(x) for x in row_str[1:-1].split(', ')]
-            lab.append(row)
-    return start, goal, size, lab
+        try:
+            start = tuple(map(int, f.readline().strip().split(', ')))
+            goal = tuple(map(int, f.readline().strip().split(', ')))
+            size = tuple(map(int, f.readline().strip().split(', ')))
+            lab = []
+            for _ in range(size[0]):
+                row_str = f.readline().strip()
+                row = [int(x) for x in row_str[1:-1].split(', ')]
+                lab.append(row)
+            return start, goal, size, lab
+        except ValueError:
+            write_output(output_file, None)
 
 
 def write_output(output_file, result):
     with open(output_file, 'w') as f:
         f.write(str(result))
-
-
-def main():
-    input_file = 'C:/Projects/algo-and-data-structures-labs/resources/input.txt'
-    output_file = 'C:/Projects/algo-and-data-structures-labs/resources/output.txt'
-    start, goal, size, lab = read_input(input_file)
-    result = labyrinth(start, goal, size, lab)
-    write_output(output_file, result)
-
-
-if __name__ == '__main__':
-    main()

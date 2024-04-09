@@ -1,9 +1,9 @@
 def labyrinth(start_point, goal, size, lab):
-    q = [start_point]
+    queue = [start_point]
     distance = {start_point: 0}
     visited = set()
-    while q:
-        vertex = q.pop(0)
+    while queue:
+        vertex = queue.pop(0)
         if vertex in visited:
             continue
         if vertex == goal:
@@ -13,7 +13,7 @@ def labyrinth(start_point, goal, size, lab):
             x, y = vertex[1] + direction[1], vertex[0] + direction[0]
             if (0 <= y < size[0] and 0 <= x < size[1] and (x, y) not in visited and
                     lab[x][y] != 0):
-                q.append((x, y))
+                queue.append((x, y))
                 distance[(x, y)] = distance[vertex] + 1
     return None
 

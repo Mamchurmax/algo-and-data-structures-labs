@@ -6,23 +6,22 @@ class Node:
 
 class PriorityQueue:
     def __init__(self):
+        self.queue = []
         self.heap = []
 
     def swap(self, index1, index2):
         self.heap[index1], self.heap[index2] = self.heap[index2], self.heap[index1]
 
-    def insert(self, value, priority):
-        new_node = Node(value, priority)
-        self.heap.append(new_node)
-        self._go_up(len(self.heap) - 1)
+    def insert(self, data, priority):
+        self.heap.append(Node(data, priority))
+        self.queue.append((data, priority))
+        self.queue.sort(key=lambda x: x[1])
 
     def delete_root(self):
-        max_priority_node = self.heap[0]
-        self.heap[0] = self.heap[-1]
-        self.heap.pop()
-        if self.heap:
-            self._go_down(0)
-        return max_priority_node.value
+        if len(self.queue) > 0:
+            return self.queue.pop(0)
+        else:
+            return None
 
     def show(self):
         if not self.heap:

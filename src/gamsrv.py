@@ -45,12 +45,17 @@ def ping(input_file, output_file):
         return
 
     min_max_ping = float('inf')
+    max_server = None
     for server in router_list:
-        min_max_ping = min(min_max_ping, dijkstra(server, vertex_n, gamers, adjacency_list))
+        current_ping = dijkstra(server, vertex_n, gamers, adjacency_list)
+        if current_ping < min_max_ping:
+            min_max_ping = current_ping
+            max_server = server
 
     with open(output_file, 'w') as file:
         file.write(str(min_max_ping))
-    return None
+        file.write(str(max_server))
+    return
 
 
 def write_output(output_file_path, result):
@@ -58,3 +63,8 @@ def write_output(output_file_path, result):
     file.write(str(result))
     file.close()
     return
+
+
+input_file = 'C:/Projects/algo-and-data-structures-labs/resources/lab6/gamsrv_1.in.txt'
+output_file = 'C:/Projects/algo-and-data-structures-labs/resources/lab6/test_output.txt'
+ping(input_file, output_file)

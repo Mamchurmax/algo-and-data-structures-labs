@@ -5,8 +5,8 @@ from src.labyrinth import *
 class MyTestCase(unittest.TestCase):
 
     def test_empty_output(self):
-        input_file = 'C:/Projects/algo-and-data-structures-labs/resources/empty_input.txt'
-        output_file = 'C:/Projects/algo-and-data-structures-labs/resources/empty_output.txt'
+        input_file = 'C:/Projects/algo-and-data-structures-labs/resources/lab5/empty_input.txt'
+        output_file = 'C:/Projects/algo-and-data-structures-labs/resources/lab5/empty_output.txt'
         input_data = read_input(input_file, output_file)
         file = open(output_file)
         output = file.read()
@@ -14,11 +14,11 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(str(input_data), output)
 
     def test_given_example(self):
-        input_file = 'C:/Projects/algo-and-data-structures-labs/resources/input.txt'
-        output_file = 'C:/Projects/algo-and-data-structures-labs/resources/output.txt'
+        input_file = 'C:/Projects/algo-and-data-structures-labs/resources/lab5/input.txt'
+        output_file = 'C:/Projects/algo-and-data-structures-labs/resources/lab5/output.txt'
         start, goal, size, lab = read_input(input_file, output_file)
         result = labyrinth(start, goal, size, lab)
-        file = open("C:/Projects/algo-and-data-structures-labs/resources/output.txt")
+        file = open("C:/Projects/algo-and-data-structures-labs/resources/lab5/output.txt")
         shortest_path = int(file.readline())
         file.close()
         self.assertEqual(result, shortest_path)

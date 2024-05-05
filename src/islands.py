@@ -1,4 +1,11 @@
-def read_input(input_file,):
+from typing import List
+
+def read_input(input_file: str):
+    """
+    Read the input file and return the adjacency matrix
+    :param input_file: the path to the input file
+    :return: the adjacency matrix of the graph
+    """
     adj_matrix = []
     with open(input_file, 'r') as f:
         for line in f:
@@ -7,35 +14,31 @@ def read_input(input_file,):
     return adj_matrix
 
 
-def prim(matrix):
-    num_vertices = len(matrix)
-    if num_vertices == 0:
-        return -1
-    visited = [False] * num_vertices
-    start_vertex = 0
-    visited[start_vertex] = True
-    mst_len = 0
-    edges = []
+def floyd_warshall(matrix: List[List[int]]) -> List[List[int]]:
+    """
+    :param adjacency matrix:
+    :return matrix of shortest paths between all pairs of vertices:
+    """
+    n = len(matrix)
 
-    for neighbor in range(num_vertices):
-        if matrix[start_vertex][neighbor] != 0:
-            edges.append((matrix[start_vertex][neighbor], start_vertex, neighbor))
+    for k in range(n):
+        for i in range(n):
+            for j in range(n):
+                matrix[i][j] = min(matrix[i][j], matrix[i][k] + matrix[k][j])
 
-    while not all(visited):
-        min_edge = None
-        for edge in edges:
-            weight, cur_vertex, next_vertex = edge
-            if (visited[cur_vertex] and not visited[next_vertex]) or (visited[next_vertex] and not visited[cur_vertex]):
-                if min_edge is None or weight < min_edge[0]:
-                    min_edge = edge
+    return matrix
 
-        if min_edge:
-            weight, cur_vertex, next_vertex = min_edge
-            visited[next_vertex] = True
-            mst_len += weight
 
-            for neighbor in range(num_vertices):
-                if matrix[next_vertex][neighbor] != 0 and not visited[neighbor]:
-                    edges.append((matrix[next_vertex][neighbor], next_vertex, neighbor))
-
-    return mst_len
+def min_cable_length(matrix: list[list[int]]) -> int:
+    """
+    :param matrix of shortest paths between all pairs of vertices matrix:
+    :return length of all cables needed to connect all islands:
+    """
+    matrix1 = floyd_warshall(matrix)
+    n = len(matrix1)
+    total_length = 0
+    for i in range(n):
+        for j in range(n):
+            if i != j:
+                total_length += matrix1[i][j]
+    return total_length

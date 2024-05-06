@@ -1,5 +1,6 @@
 from typing import List
 
+
 def read_input(input_file: str):
     """
     Read the input file and return the adjacency matrix
@@ -41,4 +42,4 @@ def min_cable_length(matrix: list[list[int]]) -> int:
         for j in range(n):
             if i != j:
                 total_length += matrix1[i][j]
-    return total_length
+    return total_length // 2

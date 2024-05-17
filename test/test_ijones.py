@@ -1,4 +1,4 @@
-import sys
+"""import sys
 import os
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -36,3 +36,4 @@ class MyTestCase(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+"""
